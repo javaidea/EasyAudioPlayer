@@ -4,10 +4,11 @@
 //
 //  Created by Zhou Yang on 6/17/23.
 //
-
+import MediaPlayer
 import SwiftUI
 
 struct AudioPlayerView: View {
+    @Environment(\.scenePhase) var scenePhase
     
     enum constants {
         static let titleFontWidth: CGFloat = 20
@@ -25,14 +26,15 @@ struct AudioPlayerView: View {
             Image("demo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: UIScreen.main.bounds.width * 0.44)
+                .frame(width: UIScreen.main.bounds.width * 0.5)
+                .cornerRadius(3)
             
             Text(vm.currentFilename)
                 .font(Font.custom("Helvetica Neue", size: 30))
                 .fontWeight(.semibold)
             
             VStack {
-                Slider(value: $vm.progress, onEditingChanged: { editing in
+                EasySlider(value: $vm.progress, width: UIScreen.main.bounds.width * 0.6, height: 4, thumbSize: .init(width: 5, height: 20), onEditingChanged: { editing in
                     if !editing {
                         vm.seekByProgress()
                     }
@@ -50,10 +52,10 @@ struct AudioPlayerView: View {
                         .font(Font.custom("Helvetica Neue", size: 18))
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            if vm.timeDisplayMode == 0 {
-                                vm.timeDisplayMode = 1
+                            if vm.timeDisplayMode == .total {
+                                vm.timeDisplayMode = .remain
                             } else {
-                                vm.timeDisplayMode = 0
+                                vm.timeDisplayMode = .total
                             }
                         }
                 }
@@ -73,7 +75,7 @@ struct AudioPlayerView: View {
                     Image(systemName: "circle.hexagongrid.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 40)
+                        .frame(width: 30)
                         .foregroundColor(.white)
                 }
             }
@@ -84,6 +86,13 @@ struct AudioPlayerView: View {
             PlayListView(vm: vm) { index in
                 isShowingList.toggle()
                 vm.play(index)
+            }
+        }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                if let player = vm.player {
+                    vm.isPlaying = player.isPlaying
+                }
             }
         }
     }
@@ -127,6 +136,7 @@ struct AudioPlayerView: View {
         .frame(height: 40)
         .frame(width: UIScreen.main.bounds.width * 0.6)
     }
+    
 }
 
 struct AudioPlayerView_Previews: PreviewProvider {

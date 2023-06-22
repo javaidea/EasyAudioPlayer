@@ -17,7 +17,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         } catch{
             print(error.localizedDescription)
         }
-        
+        application.beginReceivingRemoteControlEvents()
         return true
     }
 }

@@ -28,28 +28,38 @@ struct PlayListView: View {
                     .frame(width: 30)
             }
             .padding(.bottom, 16)
-            ScrollView {
-                LazyVGrid(columns: columns, alignment: .center, spacing: 24) {
-                    ForEach(vm.items) { item in
-                        Button {
-                            selectItem(item.id)
-                        } label: {
-                            Text(item.filename)
-                                .font(Font.custom("Helvetica Neue", size: 16))
-                                .fontWeight(.semibold)
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 6)
-                                .background(vm.currentIndex == item.id && vm.isPlaying ? Color.pink : Color.purple)
-                                .cornerRadius(6)
+            ScrollView(showsIndicators: false) {
+                ScrollViewReader { scrollViewProxy in
+                    LazyVGrid(columns: columns, alignment: .center, spacing: 24) {
+                        ForEach(vm.items) { item in
+                            Button {
+                                selectItem(item.id)
+                            } label: {
+                                Text(item.filename)
+                                    .font(Font.custom("Helvetica Neue", size: 16))
+                                    .fontWeight(.semibold)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 6)
+                                    .background(vm.currentIndex == item.id ?
+                                                (vm.isPlaying ? Color.pink : Color.purple) :
+                                                    Color.indigo)
+                                    .cornerRadius(6)
+                                    .shadow(radius: 3)
+                            }
+                            .id(item.id)
                         }
                     }
+                    .onAppear {
+                        scrollViewProxy.scrollTo(vm.currentIndex)
+                    }
+
                 }
             }
             .frame(maxWidth: .infinity)
         }
         .padding([.top, .horizontal], 24)
         .foregroundColor(.white)
-        .background(Color.green.gradient)
+        .background(Color.mint.gradient)
     }
 }
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		196406E92A43E8F8008610F2 /* EasySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196406E82A43E8F8008610F2 /* EasySlider.swift */; };
+		196406EC2A43F86A008610F2 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196406EB2A43F86A008610F2 /* View+Extensions.swift */; };
+		196406F82A440DEC008610F2 /* AVPlayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196406F72A440DEC008610F2 /* AVPlayer+Extensions.swift */; };
 		199098662A3D7D3100E31542 /* EasyAudioPlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199098652A3D7D3100E31542 /* EasyAudioPlayerApp.swift */; };
 		199098682A3D7D3100E31542 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199098672A3D7D3100E31542 /* ContentView.swift */; };
 		1990986A2A3D7D3200E31542 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 199098692A3D7D3200E31542 /* Assets.xcassets */; };
@@ -40,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		196406E82A43E8F8008610F2 /* EasySlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasySlider.swift; sourceTree = "<group>"; };
+		196406EB2A43F86A008610F2 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		196406F72A440DEC008610F2 /* AVPlayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Extensions.swift"; sourceTree = "<group>"; };
 		199098622A3D7D3100E31542 /* EasyAudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyAudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		199098652A3D7D3100E31542 /* EasyAudioPlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyAudioPlayerApp.swift; sourceTree = "<group>"; };
 		199098672A3D7D3100E31542 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -168,6 +174,7 @@
 			children = (
 				199098932A3D7EF600E31542 /* AudioPlayerView.swift */,
 				199098B12A3DEE6C00E31542 /* PlayListView.swift */,
+				196406E82A43E8F8008610F2 /* EasySlider.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				199098A52A3D870E00E31542 /* String+Extensions.swift */,
+				196406EB2A43F86A008610F2 /* View+Extensions.swift */,
+				196406F72A440DEC008610F2 /* AVPlayer+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +329,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				196406E92A43E8F8008610F2 /* EasySlider.swift in Sources */,
+				196406EC2A43F86A008610F2 /* View+Extensions.swift in Sources */,
 				19909FAA2A3E09F200E31542 /* AppDelegate.swift in Sources */,
 				199098A62A3D870E00E31542 /* String+Extensions.swift in Sources */,
 				199098A92A3D888F00E31542 /* AudioPlayerViewModel.swift in Sources */,
@@ -327,6 +338,7 @@
 				199098682A3D7D3100E31542 /* ContentView.swift in Sources */,
 				199098662A3D7D3100E31542 /* EasyAudioPlayerApp.swift in Sources */,
 				199098942A3D7EF600E31542 /* AudioPlayerView.swift in Sources */,
+				196406F82A440DEC008610F2 /* AVPlayer+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,8 +518,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -540,8 +552,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
