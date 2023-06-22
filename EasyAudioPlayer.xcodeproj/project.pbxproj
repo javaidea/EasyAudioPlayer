@@ -173,8 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				199098932A3D7EF600E31542 /* AudioPlayerView.swift */,
-				199098B12A3DEE6C00E31542 /* PlayListView.swift */,
 				196406E82A43E8F8008610F2 /* EasySlider.swift */,
+				199098B12A3DEE6C00E31542 /* PlayListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,9 +182,9 @@
 		199098A22A3D847200E31542 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				196406F72A440DEC008610F2 /* AVPlayer+Extensions.swift */,
 				199098A52A3D870E00E31542 /* String+Extensions.swift */,
 				196406EB2A43F86A008610F2 /* View+Extensions.swift */,
-				196406F72A440DEC008610F2 /* AVPlayer+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

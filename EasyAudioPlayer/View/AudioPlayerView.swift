@@ -34,7 +34,7 @@ struct AudioPlayerView: View {
                 .fontWeight(.semibold)
             
             VStack {
-                EasySlider(value: $vm.progress, width: UIScreen.main.bounds.width * 0.6, height: 4, thumbSize: .init(width: 5, height: 20), onEditingChanged: { editing in
+                EasySlider(value: $vm.progress, thickness: 4, thumbSize: .init(width: 5, height: 20), onEditingChanged: { editing in
                     if !editing {
                         vm.seekByProgress()
                     }

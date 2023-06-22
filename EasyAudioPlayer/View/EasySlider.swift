@@ -11,48 +11,33 @@ struct EasySlider: View {
     
     @GestureState var dragOffset: CGSize = .zero
     
-    @State var minX: CGFloat = 0
+    @State var isEditing: Bool = false
+    @State var isInitializing: Bool = false
     @State var maxX: CGFloat = 0
+    @State var minX: CGFloat = 0
+    @State var width: CGFloat = 0
 
     @Binding var value: CGFloat
-    @State var isEditing: Bool = false
     
-    let width: CGFloat
-    let height: CGFloat
-    let foregroundColors: [Color]
-    let backgroundColor: Color
-    let thumbSize: CGSize
+    private let backgroundColor: Color
+    private let foregroundColors: [Color]
+    private let thickness: CGFloat
+    private let thumbSize: CGSize
     
-    var onEditingChanged: (Bool) -> Void
+    private var onEditingChanged: (Bool) -> Void
     
     init(value: Binding<CGFloat>,
-         size: CGSize,
-         thumbSize: CGSize? = nil,
-         foregroundColors: [Color] = [Color.yellow, Color.orange],
-         backgroundColor: Color = .black.opacity(0.25),
-         onEditingChanged: @escaping (Bool) -> Void) {
-        self.init(value: value,
-                  width: size.width,
-                  height: size.height,
-                  foregroundColors: foregroundColors,
-                  backgroundColor: backgroundColor,
-                  onEditingChanged: onEditingChanged)
-    }
-    
-    init(value: Binding<CGFloat>,
-         width: CGFloat,
-         height: CGFloat,
+         thickness: CGFloat,
          thumbSize: CGSize? = nil,
          foregroundColors: [Color] = [Color.yellow, Color.orange],
          backgroundColor: Color = .black.opacity(0.25),
          onEditingChanged: @escaping (Bool) -> Void) {
         self._value = value
-        self.width = width
-        self.height = height
+        self.thickness = thickness
         if let thumbSize {
             self.thumbSize = thumbSize
         } else {
-            self.thumbSize = CGSize(width: 10, height: height * 3)
+            self.thumbSize = CGSize(width: 10, height: thickness * 3)
         }
         self.foregroundColors = foregroundColors
         self.backgroundColor = backgroundColor
@@ -63,13 +48,15 @@ struct EasySlider: View {
         ZStack(alignment: .leading) {
             Capsule()
                 .fill(backgroundColor)
-                .frame(width: width, height: height)
+                .frame(width: width, height: thickness)
+            
                 .background(
                     GeometryReader {geo -> Color in
                         DispatchQueue.main.async {
                             let frame = geo.frame(in: .local)
                             minX = frame.minX
                             maxX = frame.maxX
+                            width = frame.width
                         }
                         return .clear
                     }
@@ -79,7 +66,7 @@ struct EasySlider: View {
                 .fill(
                     LinearGradient(colors: foregroundColors, startPoint: .leading, endPoint: .trailing)
                 )
-                .frame(width: width * value, height: height)
+                .frame(height: thickness)
                 .background(
                     GeometryReader {geo -> Color in
                         DispatchQueue.main.async {
@@ -130,12 +117,6 @@ struct EasySlider: View {
                 })
         )
     }
-    
-//    func updateThumbPos() {
-//        if value > 0 && width > thumbSize.width {
-//            offsetX = (width - thumbSize.width) * value + minX
-//        }
-//    }
 }
 
 struct EasySliderExampleContainer: View {
@@ -144,10 +125,8 @@ struct EasySliderExampleContainer: View {
     var body: some View {
         EasySlider(
             value: $value,
-            width: UIScreen.main.bounds.width * 0.5,
-            height: 10,
-//            thumbSize: .init(width:20, height: 50),
-            onEditingChanged: { editing in
+            thickness: 10,
+            onEditingChanged: { _ in
             }
         )
     }
